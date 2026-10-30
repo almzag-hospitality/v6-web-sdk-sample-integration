@@ -40,9 +40,15 @@ function configureCardFields(sdkInstance) {
     placeholder: "CVV",
   });
 
+  const nameField = cardFieldsInstance.createCardFieldsComponent({
+    type: "name",
+    placeholder: "Name",
+  });
+
   document.querySelector("#paypal-card-fields-number").appendChild(numberField);
   document.querySelector("#paypal-card-fields-cvv").appendChild(cvvField);
   document.querySelector("#paypal-card-fields-expiry").appendChild(expiryField);
+  document.querySelector("#paypal-card-fields-name").appendChild(nameField);
 
   const payButton = document.querySelector("#pay-button");
   payButton.removeAttribute("hidden");
@@ -55,7 +61,7 @@ async function onPayClick(cardFieldsInstance) {
 
     const { data, state } = await cardFieldsInstance.submit(orderId, {
       billingAddress: {
-        postalCode: "95131",
+        countryCode: "US",
       },
     });
 

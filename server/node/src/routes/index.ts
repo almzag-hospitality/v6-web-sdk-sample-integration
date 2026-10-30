@@ -15,6 +15,8 @@ import {
   createOrderForCardWithThreeDSecureRouteHandler,
   getOrderRouteHandler,
   captureOrderRouteHandler,
+  captureAchWalletOrderRouteHandler,
+  createOrderForSavedPaymentMethodsRouteHandler,
 } from "./ordersRouteHandler";
 
 import {
@@ -52,6 +54,11 @@ router.post(
 );
 
 router.post(
+  "/paypal-api/checkout/orders/create-order-for-paypal-saved-payment-methods",
+  createOrderForSavedPaymentMethodsRouteHandler,
+);
+
+router.post(
   "/paypal-api/checkout/orders/create-order-for-apple-pay-one-time-payment-with-vault",
   createOrderForApplePayOneTimePaymentWithVaultRouteHandler,
 );
@@ -76,6 +83,11 @@ router.get("/paypal-api/checkout/orders/:orderId", getOrderRouteHandler);
 router.post(
   "/paypal-api/checkout/orders/:orderId/capture",
   captureOrderRouteHandler,
+);
+
+router.post(
+  "/paypal-api/checkout/orders/:orderId/capture-ach-wallet",
+  captureAchWalletOrderRouteHandler,
 );
 
 router.post(
